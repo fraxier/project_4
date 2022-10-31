@@ -3,5 +3,18 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users, only: [:index, :show]
+
+  # Method  |Description
+  # index	  |Show all newsletters
+  # create	|Create a new newsletter
+  # new	    |Render the form for creating a new newsletter
+  # edit	  |Render the form for editing a newsletter
+  # show	  |Show a single newsletter
+  # update	|Update a newsletter
+  # destroy	|Delete a newsletter
+
+  resources :users, only: [:show]
+  resources :events, only: [:index, :show]
+  resources :tickets, only: [:show, :new, :create]
+
 end
