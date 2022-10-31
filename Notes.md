@@ -1,3 +1,5 @@
+# NOTES
+
 cookie middleware has been enabled
 session middleware also enabled
 
@@ -13,16 +15,16 @@ apparently cookie + session changes to config/application.rb required only if cr
 
 same site cookie explanation = https://web.dev/samesite-cookies-explained/
 
-step 1:
-setting up database tables;
+# step 1:
+## setting up database tables;
 created base tables
 created join tables
   - join tables create references but not indexes
   - indexes are quick lookup systems for database search optimisation
 
-step 2:
-creating the models;
-active record associations
+# step 2:
+## creating the models;
+## active record associations
 
 event :many <-  -> :many artists
 event :many <- tickets -> :many users
@@ -30,11 +32,18 @@ event :many <- tickets -> :many users
 rake db:migrate
 bin/rails dbconsole
 
-step 3:
-routes; CRUD stuff;
+# step 3:
+## routes; CRUD stuff;
 search engines punish sites with routes that don't work
 resources :model, only : [:index, :show]
 
-user, event, ticket, artist
+### user, event, ticket, artist
 
-creating
+Method  |Description
+index	  |Show all newsletters
+create	|Create a new newsletter
+new	    |Render the form for creating a new newsletter
+edit	  |Render the form for editing a newsletter
+show	  |Show a single newsletter
+update	|Update a newsletter
+destroy	|Delete a newsletter
