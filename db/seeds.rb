@@ -24,7 +24,7 @@ artist_arr = []
   artist_arr << { name: Faker::Music.unique.band }
 end
 10.times do
-  event_arr << { show_date: Faker::Date.forward(days: 100), location: Faker::Address.city,
+  event_arr << { name: Faker::Music.album, show_date: Faker::Date.forward(days: 100), location: Faker::Address.city,
                  description: Faker::TvShows::BrooklynNineNine.unique.quote }
 end
 

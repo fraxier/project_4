@@ -3,6 +3,10 @@ class Event < ApplicationRecord
   has_many :tickets
   has_many :users, through: :tickets
 
+  validates :name, presence: true
+  validates :show_date, presence: true
+  validates :description, presence: true
+
   def self.headliners
     Event.where(is_headliner: true).order(show_date: :desc)
   end

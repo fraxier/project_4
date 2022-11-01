@@ -105,6 +105,13 @@ might need to create rake task to populate database with faker data
 turns out there's already a rake task called db:seed that runs the seeds.rb file
 truncate + reseed task = rake db:seed:replant
 
+# step 6:
+### testing
+
+app was created with the -T flag
+added gem rspec-rails
+ran bundle install && bundle exec rails g rspec:install
+
 # step ?:
 ### Questions;
 
