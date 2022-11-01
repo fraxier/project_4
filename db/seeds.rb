@@ -18,6 +18,7 @@ users = User.create([
                     ])
 
 # events [show_date, location, description]
+# artists [name]
 event_arr = []
 artist_arr = []
 20.times do
@@ -25,7 +26,7 @@ artist_arr = []
 end
 10.times do
   event_arr << {
-    name: Faker::Music.album,
+    name: Faker::Music.unique.album,
     show_date: Faker::Date.forward(days: 100),
     location: Faker::Address.city,
     description: Faker::TvShows::BrooklynNineNine.unique.quote

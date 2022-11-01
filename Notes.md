@@ -15,6 +15,8 @@ apparently cookie + session changes to config/application.rb required only if cr
 
 same site cookie explanation = https://web.dev/samesite-cookies-explained/
 
+faker can enforce unique values by adding a unique method call to the generator i.e. Faker::Music.unique.band 
+
 sqlite3 human readable format: .mode columns, .headers on
 
 rails console is still a very helpful cli command
