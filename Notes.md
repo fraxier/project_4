@@ -19,6 +19,16 @@ sqlite3 human readable format: .mode columns, .headers on
 
 rails console is still a very helpful cli command
 
+can create migrations by following naming convention and options:
+  - bin/rails g migration AddNameToEvents name:string
+
+rspec testing built-in matchers
+https://rubydoc.info/gems/rspec-expectations/frames
+
+can show individual tests that passed by running (rspec -f d) aka (rspec -formatter documentation)
+
+can check if new objects are being created with instance.object_id
+
 ## database models
 
 ### events

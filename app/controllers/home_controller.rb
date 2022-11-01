@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   end
 
   def upcoming
+    Events.upcoming 6
   end
 
   def headliners

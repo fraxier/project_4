@@ -5,6 +5,7 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
   validates :show_date, presence: true
+  validates :location, presence: true
   validates :description, presence: true
 
   def self.headliners
