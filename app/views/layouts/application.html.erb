@@ -11,6 +11,19 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <ul class="nav align-items-center">
+        <li class="nav-item flex-grow-1">
+          <a id="logo" class="nav-link active" aria-current="page" href="#">I❤️ Concerts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login / Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">❤️ List</a>
+        </li>
+      </ul>
+      <%= yield %>
+    </div>
   </body>
 </html>
