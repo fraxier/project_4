@@ -1,0 +1,30 @@
+
+
+<div id="headlinersCarousel" class="carousel slide" data-bs-ride="false">
+  <div class="carousel-indicators">
+    <% headliners.each_with_index do |event, i| %>
+      <button type="button" 
+        data-bs-target="#headlinersCarousel" 
+        data-bs-slide-to="<%= i %>" 
+        <% if i.zero? %>
+          class="active"
+          aria-current="true" 
+        <% end %> 
+        aria-label="<%= event.name %>">
+      </button>  
+    <% end %>
+  </div>
+  <div class="carousel-inner">
+    <% headliners.each_with_index do |event, i| %>
+      <%= render partial: 'carousel_item', locals: { event: event, active: i.zero? } %>
+    <% end %>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#headlinersCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#headlinersCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
