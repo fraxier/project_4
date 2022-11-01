@@ -10,30 +10,32 @@ require 'pry'
 
 # users [username]
 users = User.create([
-                      { username: Faker::FunnyName.name },
-                      { username: Faker::FunnyName.two_word_name },
-                      { username: Faker::FunnyName.three_word_name },
-                      { username: Faker::FunnyName.four_word_name },
-                      { username: Faker::FunnyName.name_with_initial }
+                      { username: Faker::FunnyName.unique.name },
+                      { username: Faker::FunnyName.unique.two_word_name },
+                      { username: Faker::FunnyName.unique.three_word_name },
+                      { username: Faker::FunnyName.unique.four_word_name },
+                      { username: Faker::FunnyName.unique.name_with_initial }
                     ])
 
 # events [show_date, location, description]
 event_arr = []
 artist_arr = []
 20.times do
-  artist_arr << { name: Faker::Music.band }
+  artist_arr << { name: Faker::Music.unique.band }
 end
 10.times do
   event_arr << { show_date: Faker::Date.forward(days: 100), location: Faker::Address.city,
-                 description: Faker::TvShows::BrooklynNineNine.quote }
+                 description: Faker::TvShows::BrooklynNineNine.unique.quote }
 end
 
 events = Event.create(event_arr)
 artists = Artist.create(artist_arr)
 
 # create relations
+count = 0
 events.each do |event|
   event.artists << artists.sample(5) # get 5 random artists
+  event.is_headliner = (count % 4).zero?
+  count += 1
   event.save
 end
-binding.pry

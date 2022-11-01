@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   # destroy	|Delete a newsletter
 
   resources :users, only: [:show]
-  resources :events, only: [:index, :show]
-  resources :tickets, only: [:show, :new, :create]
-
+  resources :events, only: %i[index show]
+  resources :tickets, only: %i[show new create]
 end

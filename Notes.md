@@ -17,6 +17,8 @@ same site cookie explanation = https://web.dev/samesite-cookies-explained/
 
 sqlite3 human readable format: .mode columns, .headers on
 
+rails console is still a very helpful cli command
+
 ## database models
 
 ### events
@@ -107,4 +109,5 @@ truncate + reseed task = rake db:seed:replant
 ### Questions;
 
 What's the difference between Bundler and Ruby Gems?
-How to enforce unique join in join table, how to do this on model level as well? (https://nelsonfigueroa.dev/uniqueness-constraint-between-two-columns-in-rails/)
+How to enforce unique join in join table, how to do this on model level as well? (https://nelsonfigueroa.dev/uniqueness-constraint-between-two-columns-in-rails/)[doesn't work from model side :(]
+oh! "You should use has_many :through if you need validations, callbacks, or extra attributes on the join model." - ruby on rails association_basics.html

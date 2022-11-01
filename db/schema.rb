@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_30_073452) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_01_111858) do
   create_table "artists", force: :cascade do |t|
     t.string "name"
   end
@@ -18,12 +18,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_30_073452) do
   create_table "artists_events", id: false, force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "artist_id", null: false
+    t.index ["artist_id", "event_id"], name: "index_artists_events_on_artist_id_and_event_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
     t.text "description"
     t.datetime "show_date"
     t.string "location"
+    t.boolean "is_headliner"
   end
 
   create_table "tickets", id: false, force: :cascade do |t|
