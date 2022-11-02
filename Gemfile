@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.0.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
@@ -44,6 +44,9 @@ gem 'bootsnap', require: false
 
 # Bootstrap
 gem 'bootstrap', '~> 5.2.2'
+
+# JQuery
+gem 'jquery-rails'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
