@@ -41,6 +41,8 @@ Specify SameSite='Strict' or SameSite='Lax' if the cookie should not be sent in 
 
 google returns a jwt credential
 
+you can route to a controller action then render a different action's view
+
 ## database models
 
 ### events

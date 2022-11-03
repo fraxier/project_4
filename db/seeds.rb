@@ -10,11 +10,11 @@ require 'pry'
 
 # users [username]
 users = User.create([
-                      { username: Faker::FunnyName.unique.name },
-                      { username: Faker::FunnyName.unique.two_word_name },
-                      { username: Faker::FunnyName.unique.three_word_name },
-                      { username: Faker::FunnyName.unique.four_word_name },
-                      { username: Faker::FunnyName.unique.name_with_initial }
+                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.name },
+                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.two_word_name },
+                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.three_word_name },
+                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.four_word_name },
+                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.name_with_initial }
                     ])
 
 # events [show_date, location, description]

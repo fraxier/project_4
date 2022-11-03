@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'home#index'
   get '/login/', to: 'home#login', as: :login
-  post '/login/', to: 'home#create'
+  get '/logout/', to: 'home#logout', as: :logout
+  post '/login/', to: 'google_login#create'
 
   # Method  |Description
   # index	  |Show all newsletters
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
   # destroy	|Delete a newsletter
 
   resources :users, only: [:show]
+  get '/users/', to: redirect('/users/:id')
+  get '/users/:id', to: 'users#show'
+
   resources :events, only: %i[index show]
   resources :tickets, only: %i[show new create]
   resources :artists, only: %i[show]
