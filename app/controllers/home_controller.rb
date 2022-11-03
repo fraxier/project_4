@@ -19,6 +19,7 @@ class HomeController < ApplicationController
 
   def login
     flash.notice = nil
+    flash.alert = 'You are already logged in!' unless session[:user_id].nil?
   end
 
   def logout

@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   get '/logout/', to: 'home#logout', as: :logout
   post '/login/', to: 'google_login#create'
 
-  # Method  |Description
-  # index	  |Show all newsletters
-  # create	|Create a new newsletter
-  # new	    |Render the form for creating a new newsletter
-  # edit	  |Render the form for editing a newsletter
-  # show	  |Show a single newsletter
-  # update	|Update a newsletter
-  # destroy	|Delete a newsletter
+  # Method  |Description                                    
+  # index	  |Show all newsletters                           |get
+  # create	|Create a new newsletter                        |post
+  # new	    |Render the form for creating a new newsletter  |get
+  # edit	  |Render the form for editing a newsletter       |get
+  # show	  |Show a single newsletter                       |get
+  # update	|Update a newsletter                            |put / patch
+  # destroy	|Delete a newsletter                            |post
 
   resources :users, only: [:show]
   get '/users/', to: redirect('/users/:id')
