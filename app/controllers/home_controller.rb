@@ -17,10 +17,12 @@ class HomeController < ApplicationController
     Event.headliners
   end
 
-  def login; end
+  def login
+    flash.notice = nil
+  end
 
   def logout
-    flash.notice = 'You have successfully logged out' if session[:user_id].nil?
+    flash.notice = 'You have successfully logged out' unless session[:user_id].nil?
 
     session[:user_id] = nil
     render :login

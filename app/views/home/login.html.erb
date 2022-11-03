@@ -10,18 +10,20 @@
     <%= flash.notice %>
   </div>
   <% end %>
-  <p><%= session[:user_id] %></p>
-  <div id="g_id_onload"
-  data-client_id="448230211329-av45bn73jaatccunbrm0gl51m54viu5n.apps.googleusercontent.com"
-  data-login_uri="http://localhost:3000/login"
-  data-auto_prompt="false">
-</div>
-<div class="g_id_signin"
-  data-type="standard"
-  data-size="large"
-  data-theme="outline"
-  data-text="sign_in_with"
-  data-shape="rectangular"
-  data-logo_alignment="left">
-</div>
+
+  <% if session[:user_id].nil? %>
+    <div id="g_id_onload"
+      data-client_id="448230211329-av45bn73jaatccunbrm0gl51m54viu5n.apps.googleusercontent.com"
+      data-login_uri="http://localhost:3000/login"
+      data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+      data-type="standard"
+      data-size="large"
+      data-theme="outline"
+      data-text="sign_in_with"
+      data-shape="rectangular"
+      data-logo_alignment="left">
+    </div>
+  <% end %>
 </div>

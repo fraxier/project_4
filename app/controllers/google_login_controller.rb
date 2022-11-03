@@ -39,11 +39,16 @@ class GoogleLoginController < ApplicationController
   end
 
   def create_user(email, firstname)
-    user = User.create({ email: email, username: firstname })
+    user = User.find_by({ email: email, username: firstname })
+
+    if user.nil?
+      user = User.create({ email: email, username: firstname })
+      flash.notice = "Successfully logged in as #{user.username}"
+    else
+      flash.notice = 'Account successfully created'
+    end
 
     session[:user_id] = user.id
-
-    flash.notice = 'Account successfully created'
     redirect_to '/users'
   end
 
