@@ -21,6 +21,7 @@ users = User.create([
 # artists [name]
 event_arr = []
 artist_arr = []
+
 20.times do
   artist_arr << { name: Faker::Music.unique.band }
 end
@@ -42,5 +43,11 @@ events.each do |event|
   event.artists << artists.sample(5) # get 5 random artists
   event.is_headliner = (count % 4).zero?
   count += 1
+  event.poster.attach(
+    io: File.open('./db/heart-concert.jpg'),
+    filename: 'heart-concert.jpg',
+    content_type: 'image/jpg'
+    # , identify: false # add this if you don't want active storage to try identify file type
+  )
   event.save
 end

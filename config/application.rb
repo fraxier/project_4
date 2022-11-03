@@ -33,9 +33,15 @@ module MyApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Enable Cookies & Sessions
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
+    # prevent x-site cookies
     config.action_dispatch.cookies_same_site_protection = :strict
+
+    # don't use vips use mini_magick for variant image processing
+    config.active_storage.variant_processor = :mini_magick
   end
 end

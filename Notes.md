@@ -1,4 +1,5 @@
 # NOTES
+### WHEN RUNNING rake db:seed:replant delete storage folder or it will continue creating a new image to attach to event
 
 cookie middleware has been enabled
 session middleware also enabled

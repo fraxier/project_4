@@ -3,7 +3,12 @@
     active
     <% end %>
 ">
-  <%= image_tag("heart-concert.jpg", class: "d-block w-100", alt: "Heart Concert") %>
+  <%# <%= image_tag("heart-concert.jpg", class: "d-block w-100", alt: "Heart Concert") %>
+  <%= image_tag event.poster.variant(
+    resize_to_limit: [400, 400],
+    saver: { quality: 80 }
+  ) %>
+  <%#= image_tag event.poster %>
   <div class="carousel-caption d-none d-md-block">
     <h5><%= event.name %></h5>
     <p><%= event.description %></p>
