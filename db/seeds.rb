@@ -29,6 +29,7 @@ end
   event_arr << {
     name: Faker::Music.unique.album,
     show_date: Faker::Date.forward(days: 100),
+    poster: 'heart-concert.jpg',
     location: Faker::Address.city,
     description: Faker::TvShows::BrooklynNineNine.unique.quote
   }
@@ -43,11 +44,5 @@ events.each do |event|
   event.artists << artists.sample(5) # get 5 random artists
   event.is_headliner = (count % 4).zero?
   count += 1
-  event.poster.attach(
-    io: File.open('./db/heart-concert.jpg'),
-    filename: 'heart-concert.jpg',
-    content_type: 'image/jpg'
-    # , identify: false # add this if you don't want active storage to try identify file type
-  )
   event.save
 end
