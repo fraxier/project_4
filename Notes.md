@@ -39,6 +39,8 @@ Resolve this issue by updating the attributes of the cookie:
 Specify SameSite='None' and 'Secure' if the cookie should be sent in cross-site requests. This enables third-party use.
 Specify SameSite='Strict' or SameSite='Lax' if the cookie should not be sent in cross-site requests.
 
+google returns a jwt credential
+
 ## database models
 
 ### events
@@ -140,3 +142,8 @@ How to enforce unique join in join table, how to do this on model level as well?
 oh! "You should use has_many :through if you need validations, callbacks, or extra attributes on the join model." - ruby on rails association_basics.html
 
 <%= render partial: 'carousel', locals: { headliners: @data[:headliners] } %>
+
+# step ?!:
+### Look up again;
+- strong params
+- Alerts, Notices (FLASH)https://www.rubyguides.com/2019/11/rails-flash-messages/
