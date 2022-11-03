@@ -13,23 +13,12 @@
 
   <body>
     <div class="container-fluid">
-      <ul class="nav align-items-center">
-        <li class="nav-item flex-grow-1">
-          <a id="logo" class="nav-link active" aria-current="page" href="/">I❤️ Concerts</a>
-        </li>
-        <% if session[:user_id].nil? %>
-          <li class="nav-item">
-            <%= link_to 'Login / Signup', login_path, class:'nav-link' %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to 'Logout', logout_path, class:'nav-link' %>
-          </li>
-        <% end %>
-        <li class="nav-item">
-          <a class="nav-link" href="#">❤️ List</a>
-        </li>
-      </ul>
+      <%= render partial: 'shared/nav' %>
+      <div class="container">  
+        <%= render partial: 'shared/offcanvas' %>
+        
+        <%= render partial: 'shared/breadcrumb' %>
+      </div>
       <%= yield %>
     </div>
   </body>

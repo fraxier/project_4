@@ -2,27 +2,6 @@
 
 <div class="container">
   <h2>Upcoming Concerts</h2>
-  <% @data[:upcoming].each_with_index do |event, i| %>
-    <% if (i%3).zero? %>
-      <div class="row">
-    <% end %>
-      <div class="col-4">
-        <div class="card">
-          <%= image_tag(event.poster, class: 'card-img-top', alt: 'Heart Concert') %>
-          <span class="badge bg-primary card-heart">🤍</span>
-          <div class="card-body">
-            <div class="row">
-              <p class="col-3 card-date text-center"><%= event.format_date %></p>
-              <div class="col card-desc">
-                <h6 class="card-title"><a href="#"><%= event.name %></a></h6>
-                <p class="card-text"><%= event.description %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% if (i%3) == 2 %>
-    </div>
-    <% end %>
-  <% end %>
+  <%= render partial: 'shared/display_concerts', locals: { events: @data[:upcoming] } %>
+  <%= link_to 'View all', events_path, class: 'btn btn-primary btn-lg mx-auto' %>
 </div>

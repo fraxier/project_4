@@ -29,3 +29,8 @@
 .card-desc {
   border-left: 1px solid rgba(190, 190, 190, 0.6);
 }
+.poster {
+  width: 550px;
+  display: block;
+  margin-bottom: 7px;
+}

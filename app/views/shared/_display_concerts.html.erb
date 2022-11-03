@@ -1,0 +1,25 @@
+<% events.each_with_index do |event, i| %>
+  <% if (i%3).zero? %>
+    <div class="row">
+  <% end %>
+    <div class="col-4">
+      <div class="card">
+        <%= image_tag(event.poster, class: 'card-img-top', alt: 'Heart Concert') %>
+        <span class="badge bg-primary card-heart">🤍</span>
+        <div class="card-body">
+          <div class="row">
+            <p class="col-3 card-date text-center"><%= event.format_date %></p>
+            <div class="col card-desc">
+              <h6 class="card-title">
+                <%= link_to event.name, event_path(event.id) %>
+              </h6>
+              <p class="card-text"><%= event.description %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% if (i%3) == 2 %>
+  </div>
+  <% end %>
+<% end %>

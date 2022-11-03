@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/logout/', to: 'home#logout', as: :logout
   post '/login/', to: 'google_login#create'
 
-  # Method  |Description                                    
+  # Method  |Description
   # index	  |Show all newsletters                           |get
   # create	|Create a new newsletter                        |post
   # new	    |Render the form for creating a new newsletter  |get
@@ -20,8 +20,11 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   get '/users/', to: redirect('/users/:id')
   get '/users/:id', to: 'users#show'
+  get '/users/edit/:id', to: 'users#edit'
 
   resources :events, only: %i[index show]
   resources :tickets, only: %i[show new create]
-  resources :artists, only: %i[show]
+  get '/tickets/'
+
+  resources :artists, only: %i[show index]
 end
