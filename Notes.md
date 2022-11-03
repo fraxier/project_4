@@ -32,6 +32,13 @@ can show individual tests that passed by running (rspec -f d) aka (rspec -format
 
 can check if new objects are being created with instance.object_id
 
+can view routes with rails routes or in console by exploring app.:symbol_(url/path)
+
+Because a cookie’s SameSite attribute was not set or is invalid, it defaults to SameSite=Lax, which prevents the cookie from being sent in a cross-site request. This behavior protects user data from accidentally leaking to third parties and cross-site request forgery.
+Resolve this issue by updating the attributes of the cookie:
+Specify SameSite='None' and 'Secure' if the cookie should be sent in cross-site requests. This enables third-party use.
+Specify SameSite='Strict' or SameSite='Lax' if the cookie should not be sent in cross-site requests.
+
 ## database models
 
 ### events

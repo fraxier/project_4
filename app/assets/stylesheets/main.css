@@ -4,9 +4,28 @@
 .nav-link {
   width: fit-content;
 }
-.nav-item {
-  
-}
 .nav {
   border-bottom: 1px solid rgba(190, 190, 190, 0.6);
+}
+#headlinersCarousel {
+  width: 50%;
+  min-width: 500px;
+  margin: 0 auto;
+}
+.card {
+  margin-bottom: 25px;
+  position: relative;
+}
+.card-heart {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+.card-heart.badge {
+  font-size: 1.5em;
+  padding: 7px;
+  cursor: pointer;
+}
+.card-desc {
+  border-left: 1px solid rgba(190, 190, 190, 0.6);
 }

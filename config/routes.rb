@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   root 'home#index'
+  get '/login/', to: 'home#login', as: :login
+  post '/login/', to: 'home#create'
 
   # Method  |Description
   # index	  |Show all newsletters
@@ -17,4 +19,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show]
   resources :events, only: %i[index show]
   resources :tickets, only: %i[show new create]
+  resources :artists, only: %i[show]
 end

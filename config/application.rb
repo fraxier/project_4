@@ -39,6 +39,7 @@ module MyApp
     config.middleware.use ActionDispatch::Session::CookieStore
 
     # prevent x-site cookies
+    # needs to be disabled interferes with google authentication sign in?
     config.action_dispatch.cookies_same_site_protection = :strict
 
     # don't use vips use mini_magick for variant image processing

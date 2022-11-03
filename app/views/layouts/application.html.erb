@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
 
   <body>
@@ -17,7 +18,7 @@
           <a id="logo" class="nav-link active" aria-current="page" href="#">I❤️ Concerts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Login / Signup</a>
+          <%= link_to 'Login / Signup', login_path, class:'nav-link' %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">❤️ List</a>
