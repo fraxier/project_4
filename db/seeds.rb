@@ -21,6 +21,8 @@ users = User.create([
 # artists [name]
 event_arr = []
 artist_arr = []
+poster_arr = %w[heart-concert.jpg concert-2.jpg concert-3.jpg concert-4.jpg concert-5.jpg concert-6.jpg]
+
 
 20.times do
   artist_arr << { name: Faker::Music.unique.band }
@@ -29,7 +31,7 @@ end
   event_arr << {
     name: Faker::Music.unique.album,
     show_date: Faker::Date.forward(days: 100),
-    poster: 'heart-concert.jpg',
+    poster: poster_arr.sample,
     location: Faker::Address.city,
     description: Faker::TvShows::BrooklynNineNine.unique.quote
   }

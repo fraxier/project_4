@@ -3,7 +3,7 @@
     <li class="breadcrumb-item 
                               <% if current_page?('/') %>
                                 active" aria-current="page">
-                                <p>Home</p>
+                                Home
                               <% else %>
                                 "><%= link_to 'Home', '/' %>
                               <% end %>
@@ -11,7 +11,7 @@
     <li class="breadcrumb-item 
                               <% if current_page?('/events/') %>
                                 active" aria-current="page">
-                                <p>Events</p>
+                                Events
                               <% else %>
                                 "><%= link_to 'Events', events_path %>
                               <% end %>
@@ -19,18 +19,18 @@
     <li class="breadcrumb-item 
                               <% if current_page?('/artists/') %>
                                 active" aria-current="page">
-                                <p>Artists</p>
+                                Artists
                               <% else %>
                                 "><%= link_to 'Artists', artists_path %>
                               <% end %>
     </li>
-    <li class="breadcrumb-item 
+    <!-- <li class="breadcrumb-item 
                               <% if current_page?('/tickets') %>
                                 active" aria-current="page">
-                                <p>Tickets</p>
+                                Tickets
                               <% else %>
                                 "><%= link_to 'Tickets', tickets_path %>
                               <% end %>
-    </li>
+    </li> -->
   </ol>
 </nav>
