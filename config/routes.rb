@@ -24,7 +24,5 @@ Rails.application.routes.draw do
 
   resources :events, only: %i[index show]
   resources :tickets, only: %i[show new create]
-  get '/tickets/'
-
   resources :artists, only: %i[show index]
 end

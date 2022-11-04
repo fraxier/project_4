@@ -19,8 +19,8 @@ class Event < ApplicationRecord
   end
 
   def format_date
-    date = self.show_date
-    "#{DateFormat.change_to(date, "ONLY_CURRENT_MONTH_ALPHABET")}
-    #{DateFormat.change_to(date, "ONLY_CURRENT_DATE_NUMBER")}"
+    date = show_date
+    "#{DateFormat.change_to(date, 'ONLY_CURRENT_MONTH_ALPHABET')}
+    #{DateFormat.change_to(date, 'ONLY_CURRENT_DATE_NUMBER')}"
   end
 end

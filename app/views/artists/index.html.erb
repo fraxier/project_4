@@ -1,0 +1,30 @@
+<div class="container">
+  <% @artists.each_with_index do |artist, i| %>
+  <div class="accordion" id="artists">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-heading<%= i %>">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= i %>" aria-expanded="false" aria-controls="flush-collapse<%= i %>">
+          <h3 class="flex-grow-1"><%= artist.name %></h3>
+          <span class="badge bg-success rounded-pill p-3 me-5"><%= artist.num_events %> concerts lined up!</span>
+        </button>
+      </h2>
+      <div id="flush-collapse<%= i %>" class="accordion-collapse collapse" aria-labelledby="flush-heading<%= i %>" data-bs-parent="#artists">
+        <div class="accordion-body">
+          <div class="list-group">
+            <% artist.events.each do |event| %>
+            <a href="<%= event_url(event.id) %>" class="list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <h6 class="mb-1"><%= event.name %></h6>
+                <small><%= event.format_date %></small>
+              </div>
+              <p class="mb-1"><%= event.description %>></p>
+              <small>Tickets on offer now!</small>
+            </a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
