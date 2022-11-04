@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Create Account</h1>
+  <%= form_with model: @article do |form| %>
+  <%= form.text_field :title %>
+  <%= form.text_area :body, size: "60x10" %>
+  <%= form.submit %>
+  <% end %>
+</div>
+  

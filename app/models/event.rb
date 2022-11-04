@@ -10,6 +10,9 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :description, presence: true
 
+  scope :headliner, -> { where(is_headliner: true) }
+  scope :headliner_and_soon, -> { headliner.where('events.show_date < ?', 'date("now", "+2 months")').order(show_date: :desc) }
+
   def self.headliners
     Event.where(is_headliner: true).order(show_date: :desc)
   end

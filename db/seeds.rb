@@ -10,11 +10,16 @@ require 'pry'
 
 # users [username]
 users = User.create([
-                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.name },
-                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.two_word_name },
-                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.three_word_name },
-                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.four_word_name },
-                      { email: Faker::Internet.unique.email, username: Faker::FunnyName.unique.name_with_initial }
+                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                        username: Faker::FunnyName.unique.name },
+                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                        username: Faker::FunnyName.unique.two_word_name },
+                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                        username: Faker::FunnyName.unique.three_word_name },
+                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                        username: Faker::FunnyName.unique.four_word_name },
+                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                        username: Faker::FunnyName.unique.name_with_initial }
                     ])
 
 # events [show_date, location, description]
@@ -22,7 +27,6 @@ users = User.create([
 event_arr = []
 artist_arr = []
 poster_arr = %w[heart-concert.jpg concert-2.jpg concert-3.jpg concert-4.jpg concert-5.jpg concert-6.jpg]
-
 
 20.times do
   artist_arr << { name: Faker::Music.unique.band }
