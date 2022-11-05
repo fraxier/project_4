@@ -149,3 +149,8 @@ oh! "You should use has_many :through if you need validations, callbacks, or ext
 ### Look up again;
 - strong params
 - Alerts, Notices (FLASH)https://www.rubyguides.com/2019/11/rails-flash-messages/
+- https://guides.rubyonrails.org/form_helpers.html#other-helpers-of-interest -form helpers
+- https://academyxi.instructure.com/courses/186/pages/validations-in-controller-actions?module_item_id=26218 -form validation render vs redirect + @model.errors.messages
+- https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with -form_with API docs
+- what is the respond_to helper?
+- http://www.railsstatuscodes.com/

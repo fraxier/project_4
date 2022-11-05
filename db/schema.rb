@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_04_120204) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_05_053706) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_04_120204) do
     t.string "username"
     t.string "email"
     t.string "password"
+    t.boolean "is_external_login"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

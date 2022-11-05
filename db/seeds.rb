@@ -10,15 +10,25 @@ require 'pry'
 
 # users [username]
 users = User.create([
-                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                      { is_external_login: 0,
+                        password: Faker::Internet.password,
+                        email: Faker::Internet.unique.email,
                         username: Faker::FunnyName.unique.name },
-                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                      { is_external_login: 0,
+                        password: Faker::Internet.password,
+                        email: Faker::Internet.unique.email,
                         username: Faker::FunnyName.unique.two_word_name },
-                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                      { is_external_login: 0,
+                        password: Faker::Internet.password,
+                        email: Faker::Internet.unique.email,
                         username: Faker::FunnyName.unique.three_word_name },
-                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                      { is_external_login: 0,
+                        password: Faker::Internet.password,
+                        email: Faker::Internet.unique.email,
                         username: Faker::FunnyName.unique.four_word_name },
-                      { password: Faker::Internet.password, email: Faker::Internet.unique.email,
+                      { is_external_login: 0,
+                        password: Faker::Internet.password,
+                        email: Faker::Internet.unique.email,
                         username: Faker::FunnyName.unique.name_with_initial }
                     ])
 

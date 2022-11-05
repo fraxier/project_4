@@ -42,14 +42,14 @@ class GoogleLoginController < ApplicationController
     user = User.find_by({ email: email, username: firstname })
 
     if user.nil?
-      user = User.create({ email: email, username: firstname })
-      flash.notice = "Successfully logged in as #{user.username}"
-    else
+      user = User.create({ email: email, username: firstname, is_external_login: true })
       flash.notice = 'Account successfully created'
+    else
+      flash.notice = "Successfully logged in as #{user.username}"
     end
 
     session[:user_id] = user.id
-    redirect_to '/users'
+    redirect_to "/users/#{user.id}"
   end
 
   def check_csrf(param, cookie)
