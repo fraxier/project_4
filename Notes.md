@@ -157,3 +157,4 @@ oh! "You should use has_many :through if you need validations, callbacks, or ext
 - https://www.rubyguides.com/2019/05/rails-link_to-method/
 - https://yoksel.github.io/flex-cheatsheet/
 - https://scoutapm.com/blog/rails-nested-routes
+- https://dmitripavlutin.com/javascript-fetch-async-await/

@@ -13,9 +13,9 @@ $(document).ready(() => {
     const name = $(this).data('name')
     const date = $(this).data('date')
 
-    const eventCookie = findCookie('saved_events');
-    const events = parseEventCookie(eventCookie);
-    const index = events.indexOf(id)
+    const events = store
+    
+
 
     if (index > -1) {
       fetch(`/remove_event/${id}`, { method: 'POST' })

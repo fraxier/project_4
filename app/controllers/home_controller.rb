@@ -4,10 +4,9 @@ require 'httparty'
 
 class HomeController < ApplicationController
   def index
-    # needs to get stuff orrrr can make other methods that are mapped to other routes :o hmm too much work at the moment lol
     puts params
     @data = { upcoming: upcoming, headliners: headliners }
-    cookies[:saved_events] = [258] if cookies[:save_events].nil?
+    # session[:saved_events] = [Event.last, Event.first]
   end
 
   def upcoming
@@ -18,19 +17,29 @@ class HomeController < ApplicationController
     Event.headliners
   end
 
-  def save_event
-    event_id = params[:id]
-    cookies[:saved_events] << event_id
+  def saved_events
+    puts session[:saved_events]
     respond_to do |format|
-      format.json { render json: { events: cookies[:saved_events] } }
+      format.html { render json: session[:saved_events] }
+      format.json { render json: session[:saved_events] }
+    end
+  end
+
+  def save_event
+    session[:saved_events] << Event.find(params[:id])
+    puts session[:saved_events]
+    respond_to do |format|
+      format.json { render json: session[:saved_events] }
     end
   end
 
   def remove_event
-    event_id = params[:id]
-    cookies[:saved_events] -= [event_id]
+    session[:saved_events].reject! do |event|
+      event['id'] == params[:id].to_i
+    end
+
     respond_to do |format|
-      format.json { render json: { events: cookies[:saved_events] } }
+      format.json { render json: session[:saved_events] }
     end
   end
 

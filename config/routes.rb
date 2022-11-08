@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :events, only: %i[index show]
   resources :artists, only: %i[show index]
 
+  get '/saved_events/', to: 'home#saved_events'
   post '/save_event/:id', to: 'home#save_event'
-  post '/remove_event/:id', to: 'home#reomve_event'
+  post '/remove_event/:id', to: 'home#remove_event'
 end
