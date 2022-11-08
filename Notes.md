@@ -146,7 +146,7 @@ oh! "You should use has_many :through if you need validations, callbacks, or ext
 <%= render partial: 'carousel', locals: { headliners: @data[:headliners] } %>
 
 # step ?!:
-### Look up again;
+### Look up again/References;
 - strong params
 - Alerts, Notices (FLASH)https://www.rubyguides.com/2019/11/rails-flash-messages/
 - https://guides.rubyonrails.org/form_helpers.html#other-helpers-of-interest -form helpers
@@ -154,3 +154,6 @@ oh! "You should use has_many :through if you need validations, callbacks, or ext
 - https://api.rubyonrails.org/classes/ActionView/Helpers/FormHelper.html#method-i-form_with -form_with API docs
 - what is the respond_to helper?
 - http://www.railsstatuscodes.com/
+- https://www.rubyguides.com/2019/05/rails-link_to-method/
+- https://yoksel.github.io/flex-cheatsheet/
+- https://scoutapm.com/blog/rails-nested-routes

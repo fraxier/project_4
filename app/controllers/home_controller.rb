@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     # needs to get stuff orrrr can make other methods that are mapped to other routes :o hmm too much work at the moment lol
     puts params
     @data = { upcoming: upcoming, headliners: headliners }
+    cookies[:saved_events] = [258] if cookies[:save_events].nil?
   end
 
   def upcoming
@@ -15,6 +16,22 @@ class HomeController < ApplicationController
 
   def headliners
     Event.headliners
+  end
+
+  def save_event
+    event_id = params[:id]
+    cookies[:saved_events] << event_id
+    respond_to do |format|
+      format.json { render json: { events: cookies[:saved_events] } }
+    end
+  end
+
+  def remove_event
+    event_id = params[:id]
+    cookies[:saved_events] -= [event_id]
+    respond_to do |format|
+      format.json { render json: { events: cookies[:saved_events] } }
+    end
   end
 
   def login

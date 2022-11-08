@@ -5,7 +5,7 @@
     <div class="col-4">
       <div class="card">
         <%= image_tag(event.poster, class: 'card-img-top', alt: 'Heart Concert') %>
-        <span class="badge bg-primary card-heart">🤍</span>
+        <span class="badge bg-primary card-heart" data-date='<%= event.format_date %>' data-name='<%= event.name %>' data-id=<%= event.id %>>🤍</span>
         <div class="card-body">
           <div class="row">
             <p class="col-3 card-date text-center"><%= event.format_date %></p>

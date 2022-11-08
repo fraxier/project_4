@@ -17,11 +17,15 @@ Rails.application.routes.draw do
   # update	|Update a newsletter                            |put / patch
   # destroy	|Delete a newsletter                            |post
 
-  resources :users, only: %i[show new create]
-  get '/users/:id', to: 'users#show'
+  resources :users, only: %i[show new create] do
+    resources :tickets, only: %i[show new create]
+  end
+  get '/users/', to: 'users#show'
   get '/users/edit/:id', to: 'users#edit'
 
   resources :events, only: %i[index show]
-  resources :tickets, only: %i[show new create]
   resources :artists, only: %i[show index]
+
+  post '/save_event/:id', to: 'home#save_event'
+  post '/remove_event/:id', to: 'home#reomve_event'
 end
