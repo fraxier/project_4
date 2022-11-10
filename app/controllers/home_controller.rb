@@ -17,6 +17,17 @@ class HomeController < ApplicationController
     Event.headliners
   end
 
+  def pledged_events
+    return if session[:user_id].nil?
+
+    @user = User.find(session[:user_id])
+
+    respond_to do |format|
+      format.json { render json: @user.tickets }
+      format.html { render json: @user.tickets }
+    end
+  end
+
   def saved_events
     respond_to do |format|
       format.html { render json: session[:saved_events] }
@@ -41,6 +52,37 @@ class HomeController < ApplicationController
     respond_to do |format|
       format.json { render json: session[:saved_events] }
     end
+  end
+
+  def verify_login
+    @user = User.new(user_params)
+    @user.username = 'fake'
+
+    respond_to do |format|
+      if @user.valid?
+
+        @actual_user = User.find_by(email: @user.email)
+
+        if @actual_user.nil?
+          flash.alert = "Could not find account with email: #{@user.email}"
+          format.html { render :login, status: :bad_request }
+        elsif @actual_user.password != @user.password
+          flash.alert = 'Password/Email combination did not match'
+          format.html { render :login, status: :bad_request }
+        else
+          @user = @actual_user
+          session[:user_id] = @user.id
+          format.html { redirect_to user_url(@user), notice: "Successfully logged in as #{@user.username}" }
+        end
+      else
+        flash.alert = 'Login was invalid'
+        format.html { render :login, status: :bad_request }
+      end
+    end
+  end
+
+  def user_params
+    params.permit(:username, :email, :password)
   end
 
   def login

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   get '/users/', to: 'users#show'
   get '/users/edit/:id', to: 'users#edit'
+  post '/verify_login/', to: 'home#verify_login'
 
   resources :events, only: %i[index show]
   resources :artists, only: %i[show index]
@@ -29,4 +30,5 @@ Rails.application.routes.draw do
   get '/saved_events/', to: 'home#saved_events'
   post '/save_event/:id', to: 'home#save_event'
   post '/remove_event/:id', to: 'home#remove_event'
+  get '/pledged_events/', to: 'home#pledged_events'
 end

@@ -2,16 +2,19 @@
   <li class="nav-item flex-grow-1">
     <a id="logo" class="nav-link active" aria-current="page" href="/">I❤️ Concerts</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">❤️ List</a>
+  </li>
   <% if session[:user_id].nil? %>
     <li class="nav-item">
       <%= link_to 'Login / Signup', login_path, class:'nav-link' %>
     </li>
   <% else %>
     <li class="nav-item">
+      <%= link_to 'Account', user_path(session[:user_id]), class:'nav-link' %>
+    </li>
+    <li class="nav-item">
       <%= link_to 'Logout', logout_path, class:'nav-link' %>
     </li>
   <% end %>
-  <li class="nav-item">
-    <a class="nav-link" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">❤️ List</a>
-  </li>
 </ul>

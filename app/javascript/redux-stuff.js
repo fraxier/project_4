@@ -1,10 +1,30 @@
 $(document).ready(async function() {
-  const events = await reduxPage();
+  const events = await getSavedEvents();
   store.dispatch(doLoadSavedEvents(events));
+
+  const pledged = await getPledgedEvents();
+
+  clearPledges();
 
   populateUI();
 
-  $('.card-heart').click(handleHeartClick);
+  function clearPledges() {
+    $('.card-heart').each(function() {
+      const pledge = pledged.find(pledge => pledge["event_id"] === $(this).data('id'))
+      console.log(pledge)
+      if (pledge !== undefined) {
+        $(this).addClass('pledged');
+        const sibling = $(this).next();
+        sibling.removeClass('d-none').text(`$${pledge["amount"]} - Pledged!`)
+      }
+    });
+  }
+
+  $('.card-heart:not(.pledged)').click(alertMe);
+
+  function alertMe() {
+    alert('OH MY GODO')
+  }
 
   function handleHeartClick() {
     $(this).off('click', handleHeartClick);
@@ -76,10 +96,16 @@ $(document).ready(async function() {
     }
   }
 
-  async function reduxPage() {
+  async function getSavedEvents() {
     const response = await fetch('/saved_events/')
     const events = await response.json()
     return events;     
+  }
+
+  async function getPledgedEvents() {
+    const response = await fetch('/pledged_events/')
+    const events = await response.json()
+    return events;
   }
 }());
 

@@ -15,10 +15,10 @@
           <%= Event.find_by(id: event["id"])&.format_date %>
         </span>
       </div>
-      <%= form.hidden_field :"event_id_#{i}", value: event["id"] %>
+      <%= form.hidden_field :"event_id_#{i}", name: "events[event_id_#{i}]", value: event["id"] %>
       <div class="input-group mb-3">
         <span class="input-group-text">$</span>
-        <%= form.number_field :"amount_#{i}", class: 'form-control' %>
+        <%= form.number_field :"amount_#{i}", name: "amounts[amount_#{i}]", class: 'form-control' %>
         <span class="input-group-text">Pledge</span>
       </div>
 

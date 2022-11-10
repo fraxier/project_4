@@ -27,5 +27,55 @@
       data-shape="rectangular"
       data-logo_alignment="left">
     </div>
+
+    <%= form_with url: verify_login_path, method: :post do %>
+      
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <%= email_field_tag :email, @user&.email, class: "form-control" %>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div id="emailFeedback" class="invalid-feedback">
+          Looks bad!
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <%= password_field_tag :password, '', class: "form-control" %>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div id="passwordFeedback" class="invalid-feedback">
+          Looks bad!
+        </div>
+      </div>
+
+      <% if @user&.errors&.any? %>
+        <script>
+          let errors = [];
+          <% if @user.field_has_error?(:username) %>
+            errors.push({ field: 'username', msg: '<%= @user.errors[:username].first %>' });
+          <% end %>
+          <% if @user.field_has_error?(:email) %>
+            errors.push({ field: 'email', msg: '<%= @user.errors[:email].first %>' });
+          <% end %>
+          <% if @user.field_has_error?(:password) %>
+            errors.push({ field: 'password', msg: '<%= @user.errors[:password].first %>' });
+          <% end %>
+
+          errors.forEach((error) => {
+            let input = document.getElementById(error.field);
+            input.classList.add('is-invalid')
+            let msg = document.getElementById(`${error.field}Feedback`);
+            msg.innerText = error.msg.replace(/&#39;/, "'")
+          });
+
+        </script>
+      <% end %>
+      <%= submit_tag "Login", class: 'btn btn-primary' %>
+      
+    <% end %>
   <% end %>
 </div>
