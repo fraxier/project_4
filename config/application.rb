@@ -44,5 +44,8 @@ module MyApp
 
     # don't use vips use mini_magick for variant image processing
     config.active_storage.variant_processor = :mini_magick
+
+    # don't make javascript_include_tag generate Link header that preloads assets
+    config.action_view.preload_links_header = nil
   end
 end

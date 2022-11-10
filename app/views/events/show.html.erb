@@ -1,7 +1,4 @@
 <div class="container">
   <h1><%= @event.name %></h1>
-  <%= image_tag(@event.poster, class: 'poster', alt: 'Heart Concert') %>
-  <button type="button" class="btn btn-primary card-heart">Add <% if session[:added]&.include? @event.id %>❤️<% else %>🤍<% end %></button>
-  <h3><%= @event.description %></h3>
-  <h6><%= @event.format_date %></h6>
+  <%= render partial: 'shared/display_concerts', locals: { events: [@event] } %>
 </div>

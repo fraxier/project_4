@@ -2,7 +2,6 @@ require 'pry'
 
 class UsersController < ApplicationController
   def show
-    
     if session[:user_id].nil?
       flash.alert = 'Please login to view that page'
       render action: 'home/login' and return

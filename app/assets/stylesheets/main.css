@@ -34,3 +34,6 @@
   display: block;
   margin-bottom: 7px;
 }
+#eventsList {
+  list-style: none;
+}

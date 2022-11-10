@@ -14,7 +14,7 @@ $(document).ready(async function() {
 
     const events = store.getState().savedEvents
 
-    if (events.find(event => event.id === id)) {
+    if (events != null && events.find(event => event.id === id)) {
       fetch(`/remove_event/${id}`, { method: 'POST' })
       .then(() => {
         $(this).text('🤍')
@@ -25,7 +25,7 @@ $(document).ready(async function() {
       fetch(`/save_event/${id}`, { method: 'POST' })
       .then(() => {
         $(this).text('❤️')
-        addToOffCanvas(id, $(this))
+        addToOffCanvasFromHeart(id, $(this))
       })
       .catch(error => console.log(error))
     }
@@ -33,7 +33,7 @@ $(document).ready(async function() {
     $(this).on('click', handleHeartClick);
   }
 
-  function addToOffCanvas(id, element) {
+  function addToOffCanvasFromHeart(id, element) {
     // console.log('adding to canvas', id, element.data('name'), element.data('date'))
     $('#eventsList').append(`
       <li id='event-id-${id}'>
@@ -43,30 +43,37 @@ $(document).ready(async function() {
     );
   }
 
+  function addToOffCanvasFromEvent(id, name, date) {
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    const formatDate = new Date(date);
+    const dateString = `${months[formatDate.getMonth()]} ${formatDate.getDate()}`
+    // console.log('adding to canvas', id, element.data('name'), element.data('date'))
+    $('#eventsList').append(`
+      <li id='event-id-${id}'>
+        ${name}
+        <span class="badge rounded-pill text-bg-primary">${dateString}</span>
+      </li>`
+    );
+  }
+
   function removeFromOffCanvas(id) {
     $(`#event-id-${id}`).remove()
   }
     
   function populateUI() {
-    $('.card-heart').each(function() {
-      const events = store.getState().savedEvents
-      
-
-      if (typeof events[Symbol.iterator] === 'function') {
-        for (const event of events) {         
+    const events = store.getState().savedEvents
+    const cards = $('.card-heart')
+    if (events != null) {
+      for(const event of events) {
+        cards.each(function() {
           if ($(this).data('id') === event.id) {
             $(this).text('❤️');
-            addToOffCanvas(event.id, $(this))
-            break;
           }
-        }
-      } else {
-        if ($(this).data('id') === events.id) {
-          $(this).text('❤️');
-          addToOffCanvas(events.id, $(this))
-        }
+        });
+        console.log(event)
+        addToOffCanvasFromEvent(event.id, event.name, event.show_date)
       }
-    });
+    }
   }
 
   async function reduxPage() {

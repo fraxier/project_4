@@ -18,7 +18,6 @@ class HomeController < ApplicationController
   end
 
   def saved_events
-    puts session[:saved_events]
     respond_to do |format|
       format.html { render json: session[:saved_events] }
       format.json { render json: session[:saved_events] }
@@ -26,14 +25,15 @@ class HomeController < ApplicationController
   end
 
   def save_event
+    session[:saved_events] ||= []
     session[:saved_events] << Event.find(params[:id])
-    puts session[:saved_events]
     respond_to do |format|
       format.json { render json: session[:saved_events] }
     end
   end
 
   def remove_event
+    session[:saved_events] ||= []
     session[:saved_events].reject! do |event|
       event['id'] == params[:id].to_i
     end

@@ -1,70 +1,30 @@
-<div class='container'>
+<div class='container text-center'>
 
-  <h1>New Ticket Form</h1>
+  <h2>Purchasing Tickets</h2>
+  <h3 class="green"><%= @user.username %> - <%= @user.email %></h3>
+  <p>All ticket prices are determined by your generosity!</p>
+  <p>Enter an amount you are willing to pay for the ticket and all proceeds will be donated to charity!</p>
 
-  <%= form_with url: user_tickets_path, method: :post do %>
-    <div class="mb-3">
-      <label for="username" class="form-label">Username</label>
-      <%= text_field_tag :username, @user&.username, class: "form-control" %>
-      
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-      <div id="usernameFeedback" class="invalid-feedback">
-        Looks bad!
-      </div>
-    </div>
-    
-    <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <%= email_field_tag :email, @user&.email, class: "form-control" %>
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-      <div id="emailFeedback" class="invalid-feedback">
-        Looks bad!
-      </div>
-    </div>
-    
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <%= password_field_tag :password, '', class: "form-control" %>
-      <div id="passwordHelpBlock" class="form-text">
-        Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-      </div>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-      <div id="passwordFeedback" class="invalid-feedback">
-        Looks bad!
-      </div>
-    </div>
+  <%= form_with class: 'w-50 m-auto', url: user_tickets_url, method: :post do |form| %>
 
-    <% if @user&.errors&.any? %>
-    <script>
-      let errors = [];
-      <% if @user.field_has_error?(:username) %>
-        errors.push({ field: 'username', msg: '<%= @user.errors[:username].first %>' });
-      <% end %>
-      <% if @user.field_has_error?(:email) %>
-        errors.push({ field: 'email', msg: '<%= @user.errors[:email].first %>' });
-      <% end %>
-      <% if @user.field_has_error?(:password) %>
-        errors.push({ field: 'password', msg: '<%= @user.errors[:password].first %>' });
-      <% end %>
+    <% session[:saved_events].each_with_index do |event, i| %>
 
-      errors.forEach((error) => {
-        let input = document.getElementById(error.field);
-        input.classList.add('is-invalid')
-        let msg = document.getElementById(`${error.field}Feedback`);
-        msg.innerText = error.msg.replace(/&#39;/, "'")
-      });
-
-    </script>
+      <div class="mb-3 text-start">
+        <h4 class='d-inline'><%= event["name"] %></h4>
+        <span class="badge rounded-pill text-bg-primary d-inline">
+          <%= Event.find_by(id: event["id"])&.format_date %>
+        </span>
+      </div>
+      <%= form.hidden_field :"event_id_#{i}", value: event["id"] %>
+      <div class="input-group mb-3">
+        <span class="input-group-text">$</span>
+        <%= form.number_field :"amount_#{i}", class: 'form-control' %>
+        <span class="input-group-text">Pledge</span>
+      </div>
 
     <% end %>
-    <%= submit_tag "Enter", class: 'btn btn-primary' %>
+
+    <%= submit_tag "Checkout", class: 'btn btn-primary' %>
       
   <% end %>
 </div>

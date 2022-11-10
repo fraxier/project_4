@@ -43,6 +43,8 @@ google returns a jwt credential
 
 you can route to a controller action then render a different action's view
 
+Turbolink features make page events triggered with javascript not happen unless page is refreshed, see stackoverflow link at bottom
+
 ## database models
 
 ### events
@@ -158,3 +160,4 @@ oh! "You should use has_many :through if you need validations, callbacks, or ext
 - https://yoksel.github.io/flex-cheatsheet/
 - https://scoutapm.com/blog/rails-nested-routes
 - https://dmitripavlutin.com/javascript-fetch-async-await/
+- https://stackoverflow.com/questions/71110271/events-not-loading-on-first-page-load-but-works-after-refresh
