@@ -5,27 +5,35 @@
   <p>All ticket prices are determined by your generosity!</p>
   <p>Enter an amount you are willing to pay for the ticket and all proceeds will be donated to charity!</p>
 
-  <%= form_with class: 'w-50 m-auto', url: user_tickets_url, method: :post do |form| %>
+  <% if session[:saved_events].empty? %>
 
-    <% session[:saved_events].each_with_index do |event, i| %>
+    <div class="alert alert-warning" role="alert">
+      You haven't saved any concerts to your ❤️ List! Add them by clicking the 🤍's on an event
+    </div>
 
-      <div class="mb-3 text-start">
-        <h4 class='d-inline'><%= event["name"] %></h4>
-        <span class="badge rounded-pill text-bg-primary d-inline">
-          <%= Event.find_by(id: event["id"])&.format_date %>
-        </span>
-      </div>
-      <%= form.hidden_field :"event_id_#{i}", name: "events[event_id_#{i}]", value: event["id"] %>
-      <div class="input-group mb-3">
-        <span class="input-group-text">$</span>
-        <%= form.number_field :"amount_#{i}", name: "amounts[amount_#{i}]", class: 'form-control' %>
-        <span class="input-group-text">Pledge</span>
-      </div>
+  <% else %>
+    <%= form_with class: 'w-50 m-auto', url: user_tickets_url, method: :post do |form| %>
 
+      <% session[:saved_events].each_with_index do |event, i| %>
+
+        <div class="mb-3 text-start">
+          <h4 class='d-inline'><%= event["name"] %></h4>
+          <span class="badge rounded-pill text-bg-primary d-inline">
+            <%= Event.find_by(id: event["id"])&.format_date %>
+          </span>
+        </div>
+        <%= form.hidden_field :"event_id_#{i}", name: "events[event_id_#{i}]", value: event["id"] %>
+        <div class="input-group mb-3">
+          <span class="input-group-text">$</span>
+          <%= form.number_field :"amount_#{i}", name: "amounts[amount_#{i}]", class: 'form-control' %>
+          <span class="input-group-text">Pledge</span>
+        </div>
+
+      <% end %>
+
+      <%= submit_tag "Checkout", class: 'btn btn-primary' %>
+        
     <% end %>
-
-    <%= submit_tag "Checkout", class: 'btn btn-primary' %>
-      
   <% end %>
 </div>
     

@@ -4,11 +4,11 @@ $(document).ready(async function() {
 
   const pledged = await getPledgedEvents();
 
-  clearPledges();
+  populatePledges();
 
   populateUI();
 
-  function clearPledges() {
+  function populatePledges() {
     $('.card-heart').each(function() {
       const pledge = pledged.find(pledge => pledge["event_id"] === $(this).data('id'))
       console.log(pledge)
@@ -20,21 +20,18 @@ $(document).ready(async function() {
     });
   }
 
-  $('.card-heart:not(.pledged)').click(alertMe);
+  $('.card-heart:not(.pledged)').click(handleHeartClick);
 
   function alertMe() {
     alert('OH MY GODO')
   }
 
   function handleHeartClick() {
-    $(this).off('click', handleHeartClick);
-
     // if already saved then remove else add to saved_events cookie + add to offcanvas
     const id = $(this).data('id');
 
     const events = store.getState().savedEvents
-
-    if (events != null && events.find(event => event.id === id)) {
+    if (events.find(event => event.id === id)) {
       fetch(`/remove_event/${id}`, { method: 'POST' })
       .then(() => {
         $(this).text('🤍')
@@ -49,12 +46,21 @@ $(document).ready(async function() {
       })
       .catch(error => console.log(error))
     }
-
-    $(this).on('click', handleHeartClick);
   }
 
   function addToOffCanvasFromHeart(id, element) {
     // console.log('adding to canvas', id, element.data('name'), element.data('date'))
+
+    const offCanvas = $('#offcanvasRight');
+    new bootstrap.Offcanvas(offCanvas).show();
+    
+    const event = {id: id, name: element.data('name'), date: element.data('date')}
+    store.dispatch(doAddEvent(event))
+
+    if (store.getState().savedEvents.length > 0) {
+      $('#checkout-btn').removeClass('d-none')
+    }
+
     $('#eventsList').append(`
       <li id='event-id-${id}'>
         ${element.data('name')}
@@ -68,6 +74,7 @@ $(document).ready(async function() {
     const formatDate = new Date(date);
     const dateString = `${months[formatDate.getMonth()]} ${formatDate.getDate()}`
     // console.log('adding to canvas', id, element.data('name'), element.data('date'))
+
     $('#eventsList').append(`
       <li id='event-id-${id}'>
         ${name}
@@ -78,6 +85,10 @@ $(document).ready(async function() {
 
   function removeFromOffCanvas(id) {
     $(`#event-id-${id}`).remove()
+    store.dispatch(doRemoveEvent(id))
+    if (store.getState().savedEvents.length < 1) {
+      $('#checkout-btn').addClass('d-none')
+    }
   }
     
   function populateUI() {
