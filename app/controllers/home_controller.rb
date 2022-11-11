@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def pledged_events
-    return if session[:user_id].nil?
+    return render json: [] if session[:user_id].nil?
 
     @user = User.find(session[:user_id])
 

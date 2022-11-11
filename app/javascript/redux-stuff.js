@@ -115,7 +115,9 @@ $(document).ready(async function() {
 
   async function getPledgedEvents() {
     const response = await fetch('/pledged_events/')
+    console.log(response)
     const events = await response.json()
+    console.log(events)
     return events;
   }
 }());
