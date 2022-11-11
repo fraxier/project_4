@@ -11,8 +11,6 @@
   </div>
   <% end %>
 
-  <%= session[:user_id] %>
-
   <% if session[:user_id].nil? %>
     <div id="g_id_onload"
       data-client_id="448230211329-av45bn73jaatccunbrm0gl51m54viu5n.apps.googleusercontent.com"
@@ -74,8 +72,10 @@
 
         </script>
       <% end %>
-      <%= submit_tag "Login", class: 'btn btn-primary' %>
+      <%= submit_tag "Login", class: 'btn btn-primary mb-3' %>
       
     <% end %>
+    <p>Don't have an account? Make one here</p>
+    <%= link_to 'Create Account', '/users/new', class: 'btn btn-primary' %>
   <% end %>
 </div>
