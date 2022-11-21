@@ -5,6 +5,6 @@
   </div>
   <div class="offcanvas-body">
     <ul id="eventsList"></ul>
-    <%= link_to 'Checkout', new_user_ticket_url(-1), id: 'checkout-btn', class: "#{session[:saved_events].empty? ? 'd-none' : ''} btn btn-primary w-100 m-0", role: 'button' %>
+    <%= link_to 'Checkout', new_user_ticket_url(-1), id: 'checkout-btn', class: "#{session[:saved_events]&.empty? ? 'd-none' : ''} btn btn-primary w-100 m-0", role: 'button' %>
   </div>
 </div>
